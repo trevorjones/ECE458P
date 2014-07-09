@@ -4,6 +4,7 @@
 /e_voting/src/java/db/DatabaseManager.java
 /e_voting/nbproject/
 /e_voting/build.xml
+/e_voting/src/java/db/DatabaseManager.java
 *.pydevproject
 .project
 .metadata
