@@ -1,0 +1,28 @@
+{
+  "name": "Vote Changer",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description" : "Vote Changer",
+  "icons": { "16": "icons/icon.png", "48": "icons/icon.png", "128": "icons/icon.png" },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/icon.png",
+      "38": "icons/icon.png"
+    },
+    "default_title": "Options"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["file:///C:/Users/Trevor/Documents/GitHub/ECE458P/simpleSite/*"],
+      "js": ["jquery.min.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
