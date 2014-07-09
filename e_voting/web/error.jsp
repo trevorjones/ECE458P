@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Jul 9, 2014, 3:13:52 PM
+    Document   : error
+    Created on : Jul 9, 2014, 5:41:23 PM
     Author     : slouli
 --%>
 
@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="DBTestServlet">Database Access</a>
+        <h1>DB CONN FAILED</h1>
     </body>
 </html>
