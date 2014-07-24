@@ -1,4 +1,4 @@
-INSERT INTO Users (name, pass) VALUES('slouli', SHA2('asdf', 256));
+INSERT INTO Users (name, pass) VALUES('slouli', 'asdf');
 
 INSERT INTO Candidates (name) VALUES('Trevor Jones');
 INSERT INTO Candidates (name) VALUES('Steven Harper');

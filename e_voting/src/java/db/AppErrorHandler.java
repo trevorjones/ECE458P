@@ -14,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author william
- */
 @WebServlet(name = "AppErrorHandler", urlPatterns = {"/AppErrorHandler"})
 public class AppErrorHandler extends HttpServlet {
 

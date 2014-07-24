@@ -20,6 +20,7 @@
                 <input style="margin-bottom: 10px;" class="form-control" type="password" name="password" placeholder="Password"></input>
                 <button type="submit" value="Login" class="btn btn-default">Sign In</button>
             </form>
+            <a href="DBTestServlet">Database Access</a>
         </div>
     </body>
 </html>

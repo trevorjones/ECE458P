@@ -9,10 +9,6 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author trevor
- */
 public class User {
     String name;
     Boolean voted;

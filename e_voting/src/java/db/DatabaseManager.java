@@ -9,14 +9,11 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-/**
- *
- * @author william
- */
 public class DatabaseManager {
     private Connection connection;
-    private static final String url = "jdbc:mysql://localhost:3306/project";
+    private static final String url = "jdbc:mysql://localhost:3306/project/e-voting";
     private static final String user = "root";
     private static final String pwd = "abc123";
     
@@ -28,5 +25,15 @@ public class DatabaseManager {
     public Connection getConnection() {
         return this.connection;
     }
+     
+    public static void testConnection()
+         throws ClassNotFoundException, SQLException {
+         Statement stmt;
+         Connection con;
+         con = DriverManager.getConnection(url, user, pwd);
+         stmt = con.createStatement();
+         stmt.execute("USE e_voting");
+         con.close();
+     }
 }
 

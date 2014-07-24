@@ -21,10 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.User;
 
-/**
- *
- * @author william
- */
 @WebServlet(name = "SigninServlet", urlPatterns = {"/SigninServlet"})
 public class SigninServlet extends HttpServlet {
 
@@ -49,16 +45,15 @@ public class SigninServlet extends HttpServlet {
 
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             PreparedStatement ps = null;
-            ResultSet rs = null;
-
+            ResultSet rs = null;          
+            
             try {
-                ps = con.prepareStatement("select * from User where user_id=? and password=? limit 1");
+                ps = con.prepareStatement("select * from Users");
                 ps.setString(1, user_id);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
 
                 if (rs != null && rs.next()) {
-                    String type = rs.getString("type");
                     setupSession(request, response, con);
                 } else {
                     invalidUser(request, response);
