@@ -43,7 +43,7 @@ public class DBTestServlet extends HttpServlet {
             request.setAttribute("exception", e);
             url = "/error.jsp";
         }
-        getServletContext().getRequestDispatcher("/dbtest.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     
     }
 

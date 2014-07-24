@@ -48,7 +48,7 @@ public class SigninServlet extends HttpServlet {
             ResultSet rs = null;          
             
             try {
-                ps = con.prepareStatement("select * from Users");
+                ps = con.prepareStatement("select * from Users where name=? and pass=?");
                 ps.setString(1, user_id);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
@@ -84,7 +84,7 @@ public class SigninServlet extends HttpServlet {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        response.sendRedirect("/ballot.jsp");
+        response.sendRedirect("ballot.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

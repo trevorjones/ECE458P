@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 public class DatabaseManager {
     private Connection connection;
-    private static final String url = "jdbc:mysql://localhost:3306/project/e-voting";
+    private static final String url = "jdbc:mysql://localhost:3306/e_voting";
     private static final String user = "root";
     private static final String pwd = "abc123";
     
@@ -33,6 +33,7 @@ public class DatabaseManager {
          con = DriverManager.getConnection(url, user, pwd);
          stmt = con.createStatement();
          stmt.execute("USE e_voting");
+         stmt.execute("Select * from Users");
          con.close();
      }
 }

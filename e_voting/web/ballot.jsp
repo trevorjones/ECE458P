@@ -12,7 +12,14 @@
     </head>
     <body style="background-image:url(http://simsa.dsu.dal.ca/wp-content/uploads/2014/03/Vote.jpg)">
         <div style="width:250px; margin-left:auto; margin-right:auto;">
-            <h1>Hello?</h1>
+            <h1>eVoting System</h2>
+            <form id="candidates">
+              <input type="radio" name="candidate" value="trevorjones">Trevor Jones</input></br>
+              <input type="radio" name="candidate" value="stevenharper">Steven Harper</input></br>
+              <input type="radio" name="candidate" value="philkessel">Phil Kessel</input></br>
+              <input type="radio" name="candidate" value="kylelowry">Kyle Lowry</input></br>
+              <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
+            </form>
         </div>
     </body>
 </html>
