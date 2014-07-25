@@ -54,7 +54,7 @@ public class SigninServlet extends HttpServlet {
                 rs = ps.executeQuery();
 
                 if (rs != null && rs.next()) {
-                    setupSession(request, response, con);
+                    setupSession(request, response, con, user_id);
                 } else {
                     invalidUser(request, response);
                 }
@@ -79,12 +79,23 @@ public class SigninServlet extends HttpServlet {
         rd.include(request, response);
     }
     
-    public static void setupSession(HttpServletRequest request, HttpServletResponse response, Connection con) throws SQLException, IOException {
+    public static void setupSession(HttpServletRequest request, HttpServletResponse response, Connection con, String user_id) throws SQLException, IOException {
         HttpSession session = request.getSession();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        
+        ps = con.prepareStatement("select * from Users where name = ?");
+        ps.setString(1, user_id);
+        rs = ps.executeQuery();
+        rs.next();
+        User user = new User(rs);
+        session.setAttribute("user", user);
 
-        response.sendRedirect("ballot.jsp");
+        if(user.getVoted()){
+            response.sendRedirect("voted.jsp");
+        } else {
+            response.sendRedirect("ballot.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

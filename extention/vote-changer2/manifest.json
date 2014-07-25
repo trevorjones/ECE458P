@@ -20,7 +20,7 @@
 
   "content_scripts": [
     {
-      "matches": ["file:///Users/slouli/Documents/ECE458_Project/ECE458P/simpleSite/*"],
+      "matches": ["http://localhost:8084/e_voting/*"],
       "js": ["jquery.min.js", "content.js"],
       "run_at": "document_start"
     }

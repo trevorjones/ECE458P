@@ -11,9 +11,9 @@
         <link href="bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body style="background-image:url(http://simsa.dsu.dal.ca/wp-content/uploads/2014/03/Vote.jpg)">
-        <div style="width:250px; margin-left:auto; margin-right:auto;">
-            <h1>eVoting System</h2>
-            <form id="candidates">
+        <h1 style="width:300px; margin: 0 auto;">Vote for President</h2>
+        <div style="width:250px; margin-left:auto; margin-right:auto;" class="radio">
+            <form id="candidates" method="post" action="VoteServlet">
               <input type="radio" name="candidate" value="trevorjones">Trevor Jones</input></br>
               <input type="radio" name="candidate" value="stevenharper">Steven Harper</input></br>
               <input type="radio" name="candidate" value="philkessel">Phil Kessel</input></br>
