@@ -1,4 +1,5 @@
 INSERT INTO Users (name, pass) VALUES('slouli', 'asdf');
+INSERT INTO Users (name, pass) VALUES('tjones', 'asdf');
 
 INSERT INTO Candidates (id, name) VALUES('trevorjones', 'Trevor Jones');
 INSERT INTO Candidates (id, name) VALUES('stevenharper', 'Steven Harper');
