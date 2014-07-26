@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>eVoting</title>
+        <script src="http://code.jquery.com/jquery.js"></script>
         <link href="bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body style="background-image:url(http://simsa.dsu.dal.ca/wp-content/uploads/2014/03/Vote.jpg)" onload="saveState()" onchange="changed()">

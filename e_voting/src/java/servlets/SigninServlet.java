@@ -91,11 +91,11 @@ public class SigninServlet extends HttpServlet {
         User user = new User(rs);
         session.setAttribute("user", user);
 
-        if(user.getVoted()){
-            response.sendRedirect("voted.jsp");
-        } else {
+//        if(user.getVoted()){
+//            response.sendRedirect("voted.jsp");
+//        } else {
             response.sendRedirect("ballot.jsp");
-        }
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
