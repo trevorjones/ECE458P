@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +34,8 @@ public class SigninServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    Boolean injectionProtection = false;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String user_id = request.getParameter("user_id");
@@ -45,16 +48,25 @@ public class SigninServlet extends HttpServlet {
 
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             PreparedStatement ps = null;
-            ResultSet rs = null;          
+            ResultSet rs = null;
+            Statement stmt = null;
             
             try {
                 ps = con.prepareStatement("select * from Users where name=? and pass=?");
                 ps.setString(1, user_id);
                 ps.setString(2, password);
-                rs = ps.executeQuery();
-
-                if (rs != null && rs.next()) {
-                    setupSession(request, response, con, user_id);
+                stmt = con.createStatement();
+                String query = "select * from Users where name= \"" + user_id + "\" and pass= \"" + password + "\"";
+                rs = stmt.executeQuery(query);
+                
+                if(injectionProtection){
+                    rs = ps.executeQuery();
+                } else {
+                    rs = stmt.executeQuery(query);
+                }
+                
+                if (rs != null && rs.first()) {
+                    setupSession(request, response, con, user_id, injectionProtection);
                 } else {
                     invalidUser(request, response);
                 }
@@ -79,23 +91,27 @@ public class SigninServlet extends HttpServlet {
         rd.include(request, response);
     }
     
-    public static void setupSession(HttpServletRequest request, HttpServletResponse response, Connection con, String user_id) throws SQLException, IOException {
+    public static void setupSession(HttpServletRequest request, HttpServletResponse response, Connection con, String user_id, Boolean injectionProtection) throws SQLException, IOException {
         HttpSession session = request.getSession();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
-        ps = con.prepareStatement("select * from Users where name = ?");
-        ps.setString(1, user_id);
-        rs = ps.executeQuery();
-        rs.next();
-        User user = new User(rs);
-        session.setAttribute("user", user);
 
-//        if(user.getVoted()){
-//            response.sendRedirect("voted.jsp");
-//        } else {
+        if(injectionProtection){
+            ps = con.prepareStatement("select * from Users where name = ?");
+            ps.setString(1, user_id);
+            rs = ps.executeQuery();
+            rs.next();
+            User user = new User(rs);
+            session.setAttribute("user", user);
+
+            if(user.getVoted()){
+                response.sendRedirect("voted.jsp");
+            } else {
+                response.sendRedirect("ballot.jsp");
+            }
+        } else {
             response.sendRedirect("ballot.jsp");
-//        }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

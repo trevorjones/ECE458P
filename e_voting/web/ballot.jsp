@@ -21,6 +21,10 @@
               <input type="radio" name="candidate" value="kylelowry">Kyle Lowry</input></br>
               <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
             </form>
+            <form id="writein" method="post" action="WriteInServlet">
+                <input type="text" name="writein" style="width: 100%; margin-top: 10px;"></input>
+                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Submit write-in</button>
+            </form>
         </div>
     </body>
     <script type="text/javascript" src="scripts/main.js"></script>
