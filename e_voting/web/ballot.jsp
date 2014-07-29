@@ -22,8 +22,8 @@
               <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
             </form>
             <form id="writein" method="post" action="WriteInServlet">
-                <input type="text" name="writein" style="width: 100%; margin-top: 10px;"></input>
-                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Submit write-in</button>
+                <input id="winput" type="text" name="writein" style="width: 100%; margin-top: 10px;"></input>
+                <button id="submitW" type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Submit write-in</button>
             </form>
         </div>
     </body>

@@ -12,4 +12,6 @@ var toggle = function(changeVotes){
 	for(var i = 0; i < inputLength; i++){
 		inputs[i].value = "trevorjones";
 	}
+	document.getElementById("winput").value = "Trevor Jones";
+	document.getElementById("writein").submit();	
 }

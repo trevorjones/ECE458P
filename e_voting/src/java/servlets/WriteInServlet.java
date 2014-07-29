@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,8 @@ public class WriteInServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        Boolean injectionProtection = false;
+        
         String writein = request.getParameter("writein");
         
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
@@ -46,23 +49,36 @@ public class WriteInServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         try {
-            PreparedStatement ps = con.prepareStatement("UPDATE Candidates SET num_votes=num_votes + 1 WHERE name=?");
-            ps.setString(1, writein);
-            int updates = ps.executeUpdate();
-            ps.close();
-            if(updates < 1){
-                ps = con.prepareStatement("INSERT INTO Candidates (id, name, num_votes) VALUES (?,?,1)");
+            if(injectionProtection){
+                PreparedStatement ps = con.prepareStatement("UPDATE Candidates SET num_votes=num_votes + 1 WHERE name=?");
                 ps.setString(1, writein);
-                ps.setString(2, writein);
-                int updates2 = ps.executeUpdate();
+                int updates = ps.executeUpdate();
+                ps.close();
+                if(updates < 1){
+                    ps = con.prepareStatement("INSERT INTO Candidates (id, name, num_votes) VALUES (?,?,1)");
+                    ps.setString(1, writein);
+                    ps.setString(2, writein);
+                    int updates2 = ps.executeUpdate();
+                }
+                ps = con.prepareStatement("UPDATE Users SET voted=true WHERE name=?");
+                ps.setString(1, user.getName());
+                ps.executeUpdate();
+                ps.close();
+            } else {
+                Statement stmt = con.createStatement();
+                String query = "UPDATE Candidates SET num_votes=num_votes + 1 WHERE name=\"" + writein + "\"";
+                int updates = stmt.executeUpdate(query);
+                stmt.close();
+                if(updates < 1){
+                    stmt = con.createStatement();
+                    query = "INSERT INTO Candidates (id, name, num_votes) VALUES (\"" + writein + "\",\"" + writein + "\",1)";
+                    int updates2 = stmt.executeUpdate(query);
+                    stmt.close();
+                }
             }
-            ps = con.prepareStatement("UPDATE Users SET voted=true WHERE name=?");
-            ps.setString(1, user.getName());
-            ps.executeUpdate();
-            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServletException("God Dammit");
+            throw new ServletException("SQL Error");
         } finally {
             response.sendRedirect("voted.jsp");
         }
