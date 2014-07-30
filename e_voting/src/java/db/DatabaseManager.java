@@ -15,7 +15,7 @@ public class DatabaseManager {
     private Connection connection;
     private static final String url = "jdbc:mysql://localhost:3306/e_voting";
     private static final String user = "root";
-    private static final String pwd = "abc123";
+    private static final String pwd = "";
     
     public DatabaseManager() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");

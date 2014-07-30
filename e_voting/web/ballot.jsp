@@ -15,10 +15,10 @@
         <h1 style="width:300px; margin: 0 auto;">Vote for President</h2>
         <div style="width:250px; margin-left:auto; margin-right:auto;" class="radio">
             <form id="candidates" method="post" action="VoteServlet">
-              <input type="radio" name="candidate" value="trevorjones">Trevor Jones</input></br>
-              <input type="radio" name="candidate" value="stevenharper">Steven Harper</input></br>
-              <input type="radio" name="candidate" value="philkessel">Phil Kessel</input></br>
-              <input type="radio" name="candidate" value="kylelowry">Kyle Lowry</input></br>
+              <input type="radio" name="candidate" value="1">Trevor Jones</input></br>
+              <input type="radio" name="candidate" value="2">Steven Harper</input></br>
+              <input type="radio" name="candidate" value="3">Phil Kessel</input></br>
+              <input type="radio" name="candidate" value="4">Kyle Lowry</input></br>
               <img src="https://s3.amazonaws.com/i.fakecaptcha.com/words/d703037358cf.jpg" style="width: 230px;"></img>
               <input type="text" name="captcha" placeholder="Enter Captcha" style="width:100%"></input>
               <button id="submitV" type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
