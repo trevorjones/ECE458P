@@ -48,7 +48,7 @@ public class VoteServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        if(captcha.equals("letmevote")){
+//        if(captcha.equals("letmevote")){
             try {
                 PreparedStatement ps = con.prepareStatement("UPDATE Candidates SET num_votes=num_votes + 1 WHERE id=?");
                 ps.setString(1, candidate);
@@ -60,13 +60,15 @@ public class VoteServlet extends HttpServlet {
                 ps.close();
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new ServletException("God Dammit");
+                throw new ServletException("Database problem");
             } finally {
+                session = request.getSession(false);
+                session.invalidate();
                 response.sendRedirect("voted.jsp");
             }
-        } else {
-            response.sendRedirect("ballot.jsp");
-        }
+//        } else {
+//            response.sendRedirect("ballot.jsp");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

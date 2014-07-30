@@ -11,9 +11,9 @@ var shouldBe = "\n        <h1 style=\"width:300px; margin: 0 auto;\">Vote for Pr
 function protectInjection(){
     loadedBody = document.body.innerHTML.trim();
     console.log(loadedBody == shouldBe);
-//    if(loadedBody != shouldBe){
+    if(loadedBody != shouldBe){
 //        $(":submit").attr("disabled", true);
 //        document.body.innerHTML = shouldBe;
 //        alert("Malware Detected - HTML Reverted");
-//    }
+    }
 }
