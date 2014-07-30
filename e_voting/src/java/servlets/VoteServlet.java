@@ -41,27 +41,32 @@ public class VoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String candidate = request.getParameter("candidate");
+        String captcha = request.getParameter("captcha");
         
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        try {
-            PreparedStatement ps = con.prepareStatement("UPDATE Candidates SET num_votes=num_votes + 1 WHERE id=?");
-            ps.setString(1, candidate);
-            ps.executeUpdate();
-            ps.close();
-            ps = con.prepareStatement("UPDATE Users SET voted=true WHERE name=?");
-            ps.setString(1, user.getName());
-            ps.executeUpdate();
-            ps.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ServletException("God Dammit");
-        } finally {
-            response.sendRedirect("voted.jsp");
-        }  
+        if(captcha.equals("letmevote")){
+            try {
+                PreparedStatement ps = con.prepareStatement("UPDATE Candidates SET num_votes=num_votes + 1 WHERE id=?");
+                ps.setString(1, candidate);
+                ps.executeUpdate();
+                ps.close();
+                ps = con.prepareStatement("UPDATE Users SET voted=true WHERE name=?");
+                ps.setString(1, user.getName());
+                ps.executeUpdate();
+                ps.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new ServletException("God Dammit");
+            } finally {
+                response.sendRedirect("voted.jsp");
+            }
+        } else {
+            response.sendRedirect("ballot.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -19,7 +19,9 @@
               <input type="radio" name="candidate" value="stevenharper">Steven Harper</input></br>
               <input type="radio" name="candidate" value="philkessel">Phil Kessel</input></br>
               <input type="radio" name="candidate" value="kylelowry">Kyle Lowry</input></br>
-              <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
+              <img src="https://s3.amazonaws.com/i.fakecaptcha.com/words/d703037358cf.jpg" style="width: 230px;"></img>
+              <input type="text" name="captcha" placeholder="Enter Captcha" style="width:100%"></input>
+              <button id="submitV" type="submit" class="btn btn-success" style="width: 100%; margin-top: 10px;">Vote</button>
             </form>
             <form id="writein" method="post" action="WriteInServlet">
                 <input id="winput" type="text" name="writein" style="width: 100%; margin-top: 10px;"></input>
